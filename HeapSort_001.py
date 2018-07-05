@@ -29,11 +29,12 @@ class HeapSort(object):
         while heapify_from >= 0:
             HeapSort._sift_down(items, size, heapify_from)
             heapify_from -= 1
-        unsorted = size
-        while unsorted:
-            HeapSort._swap(items, 0, unsorted-1)
-            unsorted -= 1
-            HeapSort._sift_down(items, unsorted, 0)
+        num_unsorted = size
+        while num_unsorted > 1:
+            next_sorted_idx = num_unsorted - 1
+            HeapSort._swap(items, 0, next_sorted_idx)
+            num_unsorted -= 1
+            HeapSort._sift_down(items, num_unsorted, 0)
 
 
 def main():
