@@ -13,14 +13,21 @@ class HeapSort(object):
 
     @staticmethod
     def _sift_down(items, size, idx):
-        pref_idx = idx
-        if (idx*2)+1 < size and HeapSort._pref_left(items, (idx*2)+1, pref_idx):
-            pref_idx = (idx*2)+1
-        if (idx*2)+2 < size and HeapSort._pref_left(items, (idx*2)+2, pref_idx):
-            pref_idx = (idx*2)+2
-        if pref_idx != idx:
-            HeapSort._swap(items, pref_idx, idx)
-            HeapSort._sift_down(items, size, pref_idx)
+        swapped = True
+        curr_idx = idx
+        while swapped:
+            swapped = False
+            left = (curr_idx*2)+1
+            right = (curr_idx*2)+2
+            if left < size and HeapSort._pref_left(items, left, curr_idx):
+                curr_idx = left
+                swapped = True
+            if right < size and HeapSort._pref_left(items, right, curr_idx):
+                curr_idx = right
+                swapped = True
+            if swapped:
+                HeapSort._swap(items, curr_idx, idx)
+                idx = curr_idx
 
     @staticmethod
     def sort(items):
