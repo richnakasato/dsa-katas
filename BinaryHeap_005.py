@@ -1,6 +1,10 @@
 # leg 1 - 11:52:13
-# TTC:
+# leg 2 - 16:12:20
+# TTC: 28:04:33
 #
+
+import random
+
 class BinaryHeap(object):
 
     def __init__(self):
@@ -15,8 +19,8 @@ class BinaryHeap(object):
         elements = [str(x) for x in self.data[1:]]
         return prefix + str(elements)
 
-    def _pref_a(a, b):
-        return a < b
+    def _pref_a(self, a, b):
+        return self.data[a] < self.data[b]
 
     def _swap(self, a, b):
         self.data[a], self.data[b] = self.data[b], self.data[a]
@@ -40,22 +44,56 @@ class BinaryHeap(object):
             self._sift_down(min)
 
     def insert(self, item):
-        pass
+        self.data.append(item)
+        self.size += 1
+        self._sift_up(self.size)
 
     def peek(self):
-        pass
+        val = None
+        if self.size:
+            val = self.data[1]
+        return val
 
     def remove(self):
-        pass
+        val = None
+        if self.size:
+            val = self.data[1]
+            temp = self.data.pop()
+            self.size -= 1
+        if self.size:
+            self.data[1] = temp
+            self._sift_down(1)
+        return val
 
     def build(self, arr):
-        pass
+        self.data = [None] + arr[:]
+        self.size = len(arr)
+        unsifted_parent = self.size//2
+        while unsifted_parent:
+            self._sift_down(unsifted_parent)
+            unsifted_parent -= 1
 
 
 def main():
+
+    arr = random.sample(range(100), 10)
+    print(arr)
+
     bh = BinaryHeap()
     print(bh)
-    pass
+
+    bh.build(arr)
+    print(bh)
+
+    for _ in range(len(arr)):
+        print(bh.peek())
+        print(bh)
+        print(bh.remove())
+        print(bh)
+
+    for item in arr:
+        bh.insert(item)
+        print(bh)
 
 if __name__ == "__main__":
     main()
