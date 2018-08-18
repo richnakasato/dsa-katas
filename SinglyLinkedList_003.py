@@ -106,10 +106,22 @@ class SinglyLinkedList:
                 return curr, data
 
     def pop_at(self, idx):
-        pass
+        if not self.head:
+            raise Exception('list is empty!')
+        else:
+            self.head, data = self._pop_at(self.head, idx)
+            return data
 
     def _pop_at(self, curr, idx):
-        pass
+        if not curr:
+            return None, None
+        else:
+            if idx == 0:
+                self.size -= 1
+                return curr.next, curr.data
+            else:
+                curr.next, data = self._pop_at(curr.next, idx - 1)
+                return curr, data
 
     def pop_value(self, data):
         if not self.head:
