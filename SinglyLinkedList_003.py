@@ -169,6 +169,26 @@ def main():
         #print(sll.pop_left())
         print(sll.pop_right())
 
+    print('removing...')
+    print(sll2)
+    sll2.pop_value(99)
+    print(sll2)
+    sll2.pop_value(99)
+    print(sll2)
+    sll2.pop_value(99)
+    print(sll2)
+    sll2.pop_value(99)
+    print(sll2)
+
+    print('removing...')
+    print(sll2)
+    sll2.pop_at(9)
+    print(sll2)
+    sll2.pop_at(0)
+    print(sll2)
+    sll2.pop_at(2)
+    print(sll2)
+
 
 if __name__ == "__main__":
     main()
