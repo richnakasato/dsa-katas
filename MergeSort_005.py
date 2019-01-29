@@ -1,7 +1,8 @@
 import random
 
-def merge(arr, left, right):
+def merge(left, right):
     i = j = k = 0
+    arr = [None] * (len(left)+len(right))
     while i < len(left) and j < len(right):
         if left[i] < right[j]:
             arr[k] = left[i]
@@ -27,7 +28,7 @@ def mergesort(arr):
         mid = len(arr)//2
         left = mergesort(arr[:mid])
         right = mergesort(arr[mid:])
-        merged = merge(arr, left, right)
+        merged = merge(left, right)
         return merged
 
 
